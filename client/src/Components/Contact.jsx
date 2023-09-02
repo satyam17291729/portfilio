@@ -17,16 +17,24 @@ const Contact = () => {
             }
         })
     }
-    async function submitData(event){
+        
+       function submitData(event){
+        console.log(data);
         event.preventDefault();
-        try{
-          const response=await axios.post( "/users/create",data);
-          console.log(JSON.parse(response));
-        }catch(err){
-          console.log(err);
-        }
+        axios.post("/users/create", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
        
-    }
+ 
   return (
     
     <div className="container">
